@@ -9,19 +9,44 @@ body, html {
     overflow: hidden; /* Hide scrollbars on the body */
 }
 
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    list-style-type: none;
+    text-decoration: none;
+    color: #06ffb9;
+    transform: scale(1.3);
+    padding: 5px;
+}
+
+/* Hover Effect */
+a:hover {
+    color: #00d1b2;
+    /* Change color on hover */
+    transform: scale(1.4);
+    /* Slightly enlarge the link */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+    /* Glowing effect */
+}
+
 /* Container for centering the chessboard */
 .chessboard-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 120px); /* Adjust according to header/footer height */
-    border: 1px solid #85d6da47; /* Black border around the board container */
+    border: 1px solid transparent; /* Subtle border around the board container */
 }
 
 /* Wrapper for the chessboard to ensure proper alignment and spacing */
 .chessboard-wrapper {
-    width: 550px; /* Default size for larger screens */
-    height: 550px;
+    width: 95vw; /* Adjust to 95% of viewport width */
+    height: 95vw; /* Maintain aspect ratio */
+    max-width: 550px; /* Set a max width for larger screens */
+    max-height: 550px; /* Set a max height for larger screens */
     border: 2px solid #fbfbfb;
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow */
@@ -29,6 +54,7 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 /* Chessboard styles */
@@ -41,64 +67,52 @@ body, html {
     border-radius: 8px; /* Rounded corners */
 }
 
-
-/* Error message styles */
-.error-message {
+/* Pop-up message styles */
+.error-message, .game-state {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    background-color: #f8d7da;
-    color: #721c24;
+    top: 2%; /* Reduced to stay near the top */
+    right: 2%; /* Positioned to the right side */
+    background-color: #f8d7da; /* Light red background for error */
+    color: #721c24; /* Dark red text color */
     border: 1px solid #f5c6cb;
     border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 8px 12px;
+    font-size: 12px; /* Smaller font size */
     font-weight: bold;
     z-index: 1000; /* Ensure it appears above other elements */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    max-width: 200px; /* Smaller width */
+    opacity: 0.9; /* Slightly transparent */
 }
 
-/* Game state styles */
+/* Adjusted game state styles */
 .game-state {
-    position: absolute;
-    top: 30%;
-    left: 10%;
     background-color: #d7f8f2;
     color: #0a002d;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    z-index: 2; /* Ensure it appears above other elements */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    top: 10%; /* Position slightly lower */
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
     .chessboard-wrapper {
-        width: 90vw; /* Adjust to fit within the viewport */
-        height: 90vw; /* Maintain aspect ratio */
+        width: 100vw; /* Adjust to fit within the viewport */
+        height: 100vw; /* Maintain aspect ratio */
     }
     
     .error-message, .game-state {
-        font-size: 14px; /* Smaller font size for mobile */
-        padding: 8px 16px; /* Adjust padding */
-        top: 10%; /* Adjust top position */
-        left: 5%; /* Adjust left position */
+        font-size: 10px; /* Smaller font size for mobile */
+        padding: 6px 10px; /* Adjust padding */
     }
 }
 
 @media (max-width: 480px) {
     .chessboard-wrapper {
-        width: 100vw; /* Full width for very small screens */
+        width: 100vw; /* Adjust to fit within the viewport */
         height: 100vw; /* Maintain aspect ratio */
     }
     
     .error-message, .game-state {
-        font-size: 12px; /* Smaller font size for very small screens */
-        padding: 6px 12px; /* Adjust padding */
-        top: 5%; /* Adjust top position */
-        left: 2%; /* Adjust left position */
+        font-size: 9px; /* Smaller font size for very small screens */
+        padding: 4px 8px; /* Adjust padding */
     }
 }
