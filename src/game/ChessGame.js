@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Chessboard } from 'react-chessboard';
 import Error from './error';
 import { Chess } from 'chess.js';
@@ -8,8 +8,9 @@ import { useClickHandling } from './click';
 import './ChessGame.css';
 
 const ChessGame = () => {
-  const [fen, setFen] = useState(new Chess().fen()); // Initialize with the starting FEN
+  const [fen, setFen] = useState(new Chess().fen());
   const [error, setError] = useState('');
+  const [isWhiteTurn, setIsWhiteTurn] = useState(true);
 
   const {
     game,
@@ -20,9 +21,27 @@ const ChessGame = () => {
     optionSquares,
     rightClickedSquares,
     moveTo
-  } = useClickHandling(setFen); // Pass setFen here
+  } = useClickHandling(setFen);
 
-  const onDrop = handleDrop(game, setFen, setError);
+  // Update turn after each move
+  useEffect(() => {
+    const turn = game.turn();
+    setIsWhiteTurn(turn === 'w');
+
+    // Add rotation effect
+    const wrapper = document.querySelector('.chessboard-wrapper');
+    wrapper.classList.add('rotating');
+
+    const timeout = setTimeout(() => {
+      wrapper.classList.remove('rotating');
+    }, 500); // Duration matches the CSS transition time
+
+    return () => clearTimeout(timeout);
+  }, [fen, game]);
+
+  const onDrop = (sourceSquare, targetSquare) => {
+    handleDrop(game, setFen, setError)(sourceSquare, targetSquare);
+  };
 
   const customPieces = useMemo(() => {
     const pieces = ["wP", "wN", "wB", "wR", "wQ", "wK", "bP", "bN", "bB", "bR", "bQ", "bK"];
@@ -35,12 +54,13 @@ const ChessGame = () => {
             height: squareWidth,
             backgroundImage: `url(/chess-1/img/${piece}.png)`,
             backgroundSize: "100%",
+            transform: isWhiteTurn ? 'rotate(0deg)' : 'rotate(180deg)',
           }}
         />
       );
     });
     return pieceComponents;
-  }, []);
+  }, [isWhiteTurn]);
 
   const customDarkSquareStyle = {
     backgroundColor: '#779556',
@@ -54,7 +74,12 @@ const ChessGame = () => {
     <div className="chessboard-container">
       <Error message={error} />
       <GameState game={game} />
-      <div className="chessboard-wrapper">
+      <div
+        className="chessboard-wrapper"
+        style={{
+          transform: isWhiteTurn ? 'rotate(0deg)' : 'rotate(180deg)',
+        }}
+      >
         <Chessboard
           position={fen}
           onPieceDrop={onDrop}
@@ -71,7 +96,7 @@ const ChessGame = () => {
           customLightSquareStyle={customLightSquareStyle}
           customSquareStyles={{
             ...optionSquares,
-            ...rightClickedSquares
+            ...rightClickedSquares,
           }}
           promotionToSquare={moveTo}
           showPromotionDialog={showPromotionDialog}
