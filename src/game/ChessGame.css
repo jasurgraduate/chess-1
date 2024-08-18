@@ -54,10 +54,11 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: ease-in-out 0.5s;
 }
 
+
 .chessboard-wrapper.rotating {
-    transform: rotate(180deg); /* Rotate the board */
     opacity: 1; /* Apply a fading effect during rotation */
 }
 
