@@ -5,27 +5,32 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color: #f0f0f0; /* Set your desired background color here */
-  font-family: Arial, sans-serif; /* Optional: Add a default font */
+  background-color: #f0f0f0;
+  /* Set your desired background color here */
+  font-family: Arial, sans-serif;
+  /* Optional: Add a default font */
 }
 
 /* Ensure the App container also takes up the full height */
 .App {
   text-align: center;
-  min-height: 100vh; /* Ensure the container covers the viewport height */
+  min-height: 100vh;
+  /* Ensure the container covers the viewport height */
   display: flex;
   flex-direction: column;
 }
 
 .App-header {
   position: fixed;
-  top: 0; /* Ensure header sticks to the top */
+  top: 0;
+  /* Ensure header sticks to the top */
   width: 100%;
-  background-color: #282c34;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
   font-size: 12px;
   padding: 10px;
   color: white;
-  z-index: 1000; /* Ensure header is above other content */
+  z-index: 1000;
+  /* Ensure header is above other content */
 }
 
 h1 {
@@ -36,9 +41,10 @@ h1 {
 /* Footer styles */
 .App-footer {
   position: fixed;
-  bottom: 0; /* Ensure footer sticks to the bottom */
+  bottom: 0;
+  /* Ensure footer sticks to the bottom */
   width: 100%;
-  background-color: #282c34;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
   color: white;
   text-align: center;
   padding: 10px;
@@ -47,7 +53,10 @@ h1 {
 
 /* Add some spacing between content and header/footer */
 .App-content {
-  flex: 1; /* Allow content to expand */
-  margin-top: 60px; /* Adjust according to header height */
-  margin-bottom: 60px; /* Adjust according to footer height */
+  flex: 1;
+  /* Allow content to expand */
+  margin-top: 60px;
+  /* Adjust according to header height */
+  margin-bottom: 60px;
+  /* Adjust according to footer height */
 }
