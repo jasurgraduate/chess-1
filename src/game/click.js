@@ -37,7 +37,7 @@ export function useClickHandling(setFen) {
 
         if (game.isCheckmate()) {
           playSound('end');
-          setError('Checkmate');
+          
         }
 
         if (game.inCheck() && !game.isCheckmate()) {

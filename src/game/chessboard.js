@@ -19,7 +19,7 @@ const Chessboard = ({ position, onPieceDrop }) => {
                 {/* Render the piece */}
                 {position[square] && (
                   <img
-                    src={`/chess-pro/img/${position[square]}.png`}
+                    src={`/chess-1/img/${position[square]}.png`}
                     alt={position[square]}
                     className="chess-piece"
                   />

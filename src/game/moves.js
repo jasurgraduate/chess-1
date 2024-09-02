@@ -22,7 +22,6 @@ export const handleDrop = (game, setFen, setError) => (sourceSquare, targetSquar
     if (game.isCheckmate()) {
       // Play the end sound for checkmate and ensure no other sound plays
       playSound('end');
-      setError('Checkmate');
       setFen(game.fen()); // Update FEN to reflect the checkmate state
       return false; // Return false to prevent further processing
     }

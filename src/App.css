@@ -29,7 +29,7 @@ body {
   font-size: 12px;
   padding: 10px;
   color: white;
-  z-index: 1000;
+  z-index: 1;
   /* Ensure header is above other content */
 }
 
