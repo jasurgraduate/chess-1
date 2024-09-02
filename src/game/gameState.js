@@ -1,4 +1,3 @@
-// src/game/GameState.js
 import React from 'react';
 
 const GameState = ({ game }) => {
@@ -7,20 +6,10 @@ const GameState = ({ game }) => {
       return 'Loading...';
     }
 
-    // Ensure game object methods exist
-    const hasGameOver = typeof game.game_over === 'function';
-    const hasInCheckmate = typeof game.in_checkmate === 'function';
-    const hasInCheck = typeof game.in_check === 'function';
+    const hasInCheck = typeof game.inCheck === 'function';
     const hasTurn = typeof game.turn === 'function';
 
-    if (hasGameOver && game.game_over()) {
-      if (hasInCheckmate && game.in_checkmate()) {
-        return 'Checkmate';
-      }
-      return 'Draw';
-    }
-
-    if (hasInCheck && game.in_check()) {
+    if (hasInCheck && game.inCheck()) {
       return 'Check';
     }
 

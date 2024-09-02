@@ -26,13 +26,21 @@ export function useClickHandling(setFen) {
           return false;
         }
 
-        if (move.captured) {
-          playSound('capture');
-        } else {
-          playSound('move');
+         // Play appropriate sound for moves that are not checkmate
+    if (move.promotion) {
+      playSound('promote'); // Play the promotion sound
+    } else if (move.captured) {
+      playSound('capture');
+    } else {
+      playSound('move');
+    }
+
+        if (game.isCheckmate()) {
+          playSound('end');
+          setError('Checkmate');
         }
 
-        if (game.inCheck()) {
+        if (game.inCheck() && !game.isCheckmate()) {
           playSound('check');
         }
 
@@ -44,7 +52,7 @@ export function useClickHandling(setFen) {
       } catch (err) {
         console.error('Error in move:', err);
         setError('Error performing move');
-        playSound('error');
+        
         return false;
       }
     },
@@ -96,7 +104,6 @@ export function useClickHandling(setFen) {
         const hasMoveOptions = getMoveOptions(square);
         setMoveFrom(hasMoveOptions ? square : "");
         setError('Invalid move');
-        playSound('error'); // Play error sound only if a piece has been selected
         return;
       }
 

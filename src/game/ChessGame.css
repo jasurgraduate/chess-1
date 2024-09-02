@@ -1,12 +1,15 @@
 /* Reset some default styles */
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #333;
     height: 100vh;
-    width: 100vw; /* Full width */
-    overflow: hidden; /* Hide scrollbars on the body */
+    width: 100vw;
+    /* Full width */
+    overflow: hidden;
+    /* Hide scrollbars on the body */
 }
 
 main {
@@ -38,19 +41,27 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid transparent; /* Subtle border around the board container */
+    border: 1px solid transparent;
+    /* Subtle border around the board container */
 }
 
 /* Wrapper for the chessboard to ensure proper alignment and spacing */
 .chessboard-wrapper {
-    width: 95vw; /* Adjust to 95% of viewport width */
-    height: 95vw; /* Maintain aspect ratio */
-    max-width: 550px; /* Set a max width for larger screens */
-    max-height: 550px; /* Set a max height for larger screens */
+    width: 95vw;
+    /* Adjust to 95% of viewport width */
+    height: 95vw;
+    /* Maintain aspect ratio */
+    max-width: 550px;
+    /* Set a max width for larger screens */
+    max-height: 550px;
+    /* Set a max height for larger screens */
     border: 2px solid #fbfbfb;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow */
-    background-color: #fff; /* White background for the board */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Drop shadow */
+    background-color: #fff;
+    /* White background for the board */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,7 +70,8 @@ a:hover {
 
 
 .chessboard-wrapper.rotating {
-    opacity: 1; /* Apply a fading effect during rotation */
+    opacity: 1;
+    /* Apply a fading effect during rotation */
 }
 
 /* Chessboard styles */
@@ -69,55 +81,104 @@ a:hover {
     grid-template-rows: repeat(8, 1fr);
     width: 100%;
     height: 100%;
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 8px;
+    /* Rounded corners */
 }
 
-/* Pop-up message styles */
-.error-message, .game-state {
+.game-over-state {
     position: absolute;
-    top: 2%; /* Reduced to stay near the top */
-    right: 2%; /* Positioned to the right side */
-    background-color: #f8d7da; /* Light red background for error */
-    color: #721c24; /* Dark red text color */
+    top: 4%;
+    /* Reduced to stay near the top */
+    right: 4%;
+    /* Positioned to the right side */
+    background-color: #f8d7da;
+    /* Light red background for error */
+    color: #721c24;
+    /* Dark red text color */
     border: 1px solid #f5c6cb;
     border-radius: 5px;
     padding: 8px 12px;
-    font-size: 12px; /* Smaller font size */
+    font-size: 12px;
+    /* Smaller font size */
     font-weight: bold;
-    z-index: 1000; /* Ensure it appears above other elements */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Drop shadow */
-    max-width: 200px; /* Smaller width */
-    opacity: 0.9; /* Slightly transparent */
+    z-index: 1000;
+    /* Ensure it appears above other elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Drop shadow */
+    max-width: 200px;
+    /* Smaller width */
+    opacity: 0.9;
+    /* Slightly transparent */
+}
+
+/* Pop-up message styles */
+.error-message,
+.game-state,
+.game-over-state {
+    position: absolute;
+    top: 2%;
+    /* Reduced to stay near the top */
+    right: 2%;
+    /* Positioned to the right side */
+    background-color: #f8d7da;
+    /* Light red background for error */
+    color: #721c24;
+    /* Dark red text color */
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 12px;
+    /* Smaller font size */
+    font-weight: bold;
+    z-index: 1000;
+    /* Ensure it appears above other elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Drop shadow */
+    max-width: 200px;
+    /* Smaller width */
+    opacity: 0.9;
+    /* Slightly transparent */
 }
 
 /* Adjusted game state styles */
 .game-state {
     background-color: #d7f8f2;
     color: #0a002d;
-    top: 10%; /* Position slightly lower */
+    top: 10%;
+    /* Position slightly lower */
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
     .chessboard-wrapper {
-        width: 100vw; /* Adjust to fit within the viewport */
-        height: 100vw; /* Maintain aspect ratio */
+        width: 100vw;
+        /* Adjust to fit within the viewport */
+        height: 100vw;
+        /* Maintain aspect ratio */
     }
-    
-    .error-message, .game-state {
-        font-size: 10px; /* Smaller font size for mobile */
-        padding: 6px 10px; /* Adjust padding */
+
+    .error-message,
+    .game-state {
+        font-size: 10px;
+        /* Smaller font size for mobile */
+        padding: 6px 10px;
+        /* Adjust padding */
     }
 }
 
 @media (max-width: 480px) {
     .chessboard-wrapper {
-        width: 100vw; /* Adjust to fit within the viewport */
-        height: 100vw; /* Maintain aspect ratio */
+        width: 100vw;
+        /* Adjust to fit within the viewport */
+        height: 100vw;
+        /* Maintain aspect ratio */
     }
-    
-    .error-message, .game-state {
-        font-size: 9px; /* Smaller font size for very small screens */
-        padding: 4px 8px; /* Adjust padding */
+
+    .error-message,
+    .game-state {
+        font-size: 9px;
+        /* Smaller font size for very small screens */
+        padding: 4px 8px;
+        /* Adjust padding */
     }
 }
