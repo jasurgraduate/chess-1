@@ -1,6 +1,7 @@
 import React from 'react';
+import './ChessGame.css'; // Import the CSS file for styling
 
-const GameOverState = ({ game, onClose, onRevenge }) => {
+const GameOverState = ({ game, onClose, isMinimized, onMinimize }) => {
   const gameOverMessage = () => {
     if (!game) {
       return 'Loading...';
@@ -33,30 +34,26 @@ const GameOverState = ({ game, onClose, onRevenge }) => {
     return null;
   };
 
-  const handleRevenge = () => {
-    if (typeof onRevenge === 'function') {
-      onRevenge(); // This should reset the game state or start a new game
-    }
-  };
-
-  const handleClose = () => {
-    if (typeof onClose === 'function') {
-      onClose(); // This should close the modal or current window
-    }
-  };
-
   const message = gameOverMessage();
   if (!message) {
     return null;
   }
 
   return (
-    <div className="game-over-state">
-      <button className="close-button" onClick={handleClose}>X Close</button>
-      <div className="game-over-message">
-        {message}
+    <div className={`game-over-overlay ${isMinimized ? 'minimized' : ''}`}>
+      <div className="game-over-state">
+        <div className="game-over-header">
+          <button className="minimize-button" onClick={onMinimize}>
+            {isMinimized ? '🟪 Expand' : '➖ Minimize'}
+          </button>
+          <button className="close-button" onClick={onClose}>❎ Close</button>
+        </div>
+        {!isMinimized && (
+          <div className="game-over-message">
+            {message}
+          </div>
+        )}
       </div>
-      <button className="revenge-button" onClick={handleRevenge}>🔁 REVENGE?</button>
     </div>
   );
 };

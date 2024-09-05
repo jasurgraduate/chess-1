@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Chessboard } from 'react-chessboard';
 import Error from './error';
 import { Chess } from 'chess.js';
-import GameOverState from './GameOverState';
+import GameOverState from './GameOverState'; // Import GameOverState component
 import GameState from './gameState';
 import { handleDrop } from './moves';
 import { useClickHandling } from './click';
@@ -12,6 +12,8 @@ const ChessGame = () => {
   const [fen, setFen] = useState(new Chess().fen()); // Initialize with the starting FEN
   const [error, setError] = useState('');
   const [isWhiteTurn, setIsWhiteTurn] = useState(true);
+  const [showGameOver, setShowGameOver] = useState(false); // Track GameOverState visibility
+  const [isGameOverMinimized, setIsGameOverMinimized] = useState(false); // New state for minimizing
 
   const {
     game,
@@ -24,12 +26,14 @@ const ChessGame = () => {
     moveTo
   } = useClickHandling(setFen); // Pass setFen here
 
-  // Update turn after each move
   useEffect(() => {
     const turn = game.turn();
     setIsWhiteTurn(turn === 'w');
 
-    // Add rotation effect
+    const isGameOver = game.isCheckmate() || game.isStalemate() || game.isDraw();
+    setShowGameOver(isGameOver); // Show GameOverState if the game is over
+
+    // Rotation effect for the chessboard
     const wrapper = document.querySelector('.chessboard-wrapper');
     wrapper.classList.add('rotating');
 
@@ -40,8 +44,9 @@ const ChessGame = () => {
     return () => clearTimeout(timeout);
   }, [fen, game]);
 
-  const onDrop = handleDrop(game, setFen, setError);
+  const onDrop = handleDrop(game, setFen, setError); // Handle piece drops
 
+  // Custom pieces for the chessboard
   const customPieces = useMemo(() => {
     const pieces = ["wP", "wN", "wB", "wR", "wQ", "wK", "bP", "bN", "bB", "bR", "bQ", "bK"];
     const pieceComponents = {};
@@ -60,6 +65,7 @@ const ChessGame = () => {
     return pieceComponents;
   }, []);
 
+  // Custom board styles
   const customDarkSquareStyle = {
     backgroundColor: '#779556',
   };
@@ -70,9 +76,20 @@ const ChessGame = () => {
 
   return (
     <div className="chessboard-container">
+      {/* Display any errors */}
       <Error message={error} />
+      {/* Display game state */}
       <GameState game={game} />
-      <GameOverState game={game} />
+      {/* Conditionally render GameOverState based on showGameOver state */}
+      {showGameOver && (
+        <GameOverState 
+          game={game} 
+          onClose={() => setShowGameOver(false)} // Handle close
+          isMinimized={isGameOverMinimized} // Pass minimize state
+          onMinimize={() => setIsGameOverMinimized(!isGameOverMinimized)} // Toggle minimize
+        />
+      )}
+      {/* Chessboard component */}
       <div className={`chessboard-wrapper ${isWhiteTurn ? 'white-turn' : 'black-turn'}`}>
         <Chessboard
           position={fen}

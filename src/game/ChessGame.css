@@ -122,27 +122,12 @@ a:hover {
     }
 
     .close-button:hover {
-        background-color: aquamarine;
-        transition: ease-out 0.2s;
-        transform: scale(1.1);
-    }
-
-    .revenge-button {
-        margin-top: 40px;
-        padding: 20px 40px;
-        background-color: #f39c12;
         color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 30px;
-        cursor: pointer;
+        background-color: #015c4e;
         transition: ease-out 0.2s;
-    }
-
-    .revenge-button:hover {
-        background-color: #e67e22;
         transform: scale(1.1);
     }
+
 
     .error-message,
     .game-state {
@@ -167,6 +152,58 @@ a:hover {
         color: #0a002d;
         top: 10%;
     }
+
+
+
+    .game-over-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+
+    .minimize-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .minimize-button:hover {
+        background-color: #015c4e;
+        transition: ease-out 0.2s;
+        transform: scale(1.2);
+    }
+
+    .game-over-message {
+        margin-top: 20px;
+    }
+
+
+    /* Minimized state */
+    .minimized .game-over-state {
+        width: 150px;
+        /* Adjust size when minimized */
+        height: 50px;
+        /* Height when minimized */
+        padding: 10px;
+    }
+
+    .minimized .game-over-message {
+        display: none;
+        /* Hide message when minimized */
+    }
+
+    .minimized .close-button {
+        display: none;
+        /* Optionally hide close button in minimized state */
+    }
+
+
+
 }
 
 /* ------------------------------------------------------------------------    MOBILE */
@@ -282,4 +319,40 @@ a:hover {
         font-size: 10px;
         padding: 6px 10px;
     }
+
+
+    /* Minimized state */
+    .minimized .game-over-state {
+        width: 150px;
+        /* Adjust size when minimized */
+        height: 50px;
+        /* Height when minimized */
+        padding: 10px;
+    }
+
+    .minimized .game-over-message {
+        display: none;
+        /* Hide message when minimized */
+    }
+
+    .minimized .close-button {
+        display: none;
+        /* Optionally hide close button in minimized state */
+    }
+
+    .minimize-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .minimize-button:hover {
+        background-color: #015c4e;
+        transition: ease-out 0.2s;
+        transform: scale(1.2);
+    }
+
 }
