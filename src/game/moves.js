@@ -19,13 +19,6 @@ export const handleDrop = (game, setFen, setError) => (sourceSquare, targetSquar
       return false;
     }
 
-    if (game.isCheckmate()) {
-      // Play the end sound for checkmate and ensure no other sound plays
-      playSound('end');
-      setFen(game.fen()); // Update FEN to reflect the checkmate state
-      return false; // Return false to prevent further processing
-    }
-
     // Play appropriate sound for moves that are not checkmate
     if (move.promotion) {
       playSound('promote'); // Play the promotion sound
@@ -33,6 +26,10 @@ export const handleDrop = (game, setFen, setError) => (sourceSquare, targetSquar
       playSound('capture');
     } else {
       playSound('move');
+    }
+
+    if (game.isCheckmate()) {
+      playSound('end');
     }
 
     if (game.inCheck() && !game.isCheckmate()) {

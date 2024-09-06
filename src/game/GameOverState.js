@@ -46,7 +46,7 @@ const GameOverState = ({ game, onClose, isMinimized, onMinimize }) => {
           <button className="minimize-button" onClick={onMinimize}>
             {isMinimized ? '🟪 Expand' : '➖ Minimize'}
           </button>
-          <button className="close-button" onClick={onClose}>❎ Close</button>
+          <button className="close-button" onClick={onClose}>❎</button>
         </div>
         {!isMinimized && (
           <div className="game-over-message">

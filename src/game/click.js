@@ -26,18 +26,17 @@ export function useClickHandling(setFen) {
           return false;
         }
 
-         // Play appropriate sound for moves that are not checkmate
-    if (move.promotion) {
-      playSound('promote'); // Play the promotion sound
-    } else if (move.captured) {
-      playSound('capture');
-    } else {
-      playSound('move');
-    }
+        // Play appropriate sound for moves that are not checkmate
+        if (move.promotion) {
+          playSound('promote'); // Play the promotion sound
+        } else if (move.captured) {
+          playSound('capture');
+        } else {
+          playSound('move');
+        }
 
         if (game.isCheckmate()) {
           playSound('end');
-          
         }
 
         if (game.inCheck() && !game.isCheckmate()) {
@@ -52,7 +51,6 @@ export function useClickHandling(setFen) {
       } catch (err) {
         console.error('Error in move:', err);
         setError('Error performing move');
-        
         return false;
       }
     },
@@ -80,6 +78,9 @@ export function useClickHandling(setFen) {
   }
 
   function onSquareClick(square) {
+    // Reset right-clicked squares after any left-click on the board
+    setRightClickedSquares({});
+
     if (!moveFrom) {
       // No piece has been selected yet
       const hasMoveOptions = getMoveOptions(square);
@@ -89,7 +90,6 @@ export function useClickHandling(setFen) {
       } else {
         setError('No valid moves for this piece');
         // Error sound should be played only if a piece is selected
-        
       }
       return;
     }

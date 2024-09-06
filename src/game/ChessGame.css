@@ -132,14 +132,14 @@ a:hover {
     .error-message,
     .game-state {
         position: absolute;
-        top: 2%;
+        top: 10%;
         right: 2%;
         background-color: #f8d7da;
         color: #721c24;
         border: 1px solid #f5c6cb;
         border-radius: 5px;
-        padding: 8px 12px;
-        font-size: 12px;
+        padding: 15px 45px;
+        font-size: 20px;
         font-weight: bold;
         z-index: 2;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
