@@ -64,8 +64,8 @@ a:hover {
     border-radius: 8px;
 }
 
-/* ------------------------------------------------------------------------    LAPTOOOOOOOOP */
-@media (min-width: 768px) {
+/* -----------------------------------------------------------------------------------    LAPTOOOOOOOOP */
+@media (min-width: 769px) {
 
     .game-over-state {
         position: fixed;
@@ -129,13 +129,15 @@ a:hover {
     }
 
 
-    .error-message,
     .game-state {
+        all: unset;
         position: absolute;
-        top: 10%;
-        right: 2%;
-        background-color: #f8d7da;
-        color: #721c24;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        right: 4%;
+        background-color: #d7f8f2;
+        color: #03014f;
         border: 1px solid #f5c6cb;
         border-radius: 5px;
         padding: 15px 45px;
@@ -147,11 +149,7 @@ a:hover {
         opacity: 0.9;
     }
 
-    .game-state {
-        background-color: #d7f8f2;
-        color: #0a002d;
-        top: 10%;
-    }
+
 
 
 
@@ -177,6 +175,26 @@ a:hover {
         transition: ease-out 0.2s;
         transform: scale(1.2);
     }
+
+    .revenge-button {
+        background-color: rgba(13, 0, 107, 0.688);
+        /* Red button */
+        color: white;
+        border: none;
+        padding: 15px 50px;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+    .revenge-button:hover {
+        background-color: rgb(0, 91, 107);
+        /* Darker red on hover */
+        transform: scale(1.2);
+        transition: ease-in-out 0.3s;
+    }
+
 
     .game-over-message {
         margin-top: 20px;
@@ -207,7 +225,7 @@ a:hover {
 }
 
 /* ------------------------------------------------------------------------    MOBILE */
-@media (max-width: 768px) {
+@media (min-width: 320px) and (max-width: 768px) {
     .chessboard-wrapper {
         width: 100vw;
         height: 100vw;
@@ -261,20 +279,22 @@ a:hover {
     }
 
     .revenge-button {
-        margin-top: 30px;
-        padding: 10px 20px;
-        background-color: #f39c12;
+        background-color: rgba(13, 0, 107, 0.688);
+        /* Red button */
         color: white;
         border: none;
-        border-radius: 5px;
-        font-size: 30px;
+        padding: 15px 50px;
+        font-size: 20px;
         cursor: pointer;
-        transition: ease-out 0.2s;
+        border-radius: 4px;
+        margin-top: 10px;
     }
 
     .revenge-button:hover {
-        background-color: #e67e22;
-        transform: scale(1.1);
+        background-color: rgb(0, 91, 107);
+        /* Darker red on hover */
+        transform: scale(1.2);
+        transition: ease-in-out 0.3s;
     }
 
     .king-image-container {
@@ -290,34 +310,24 @@ a:hover {
         margin-bottom: 15px;
     }
 
-    .error-message,
+
     .game-state {
+        all: unset;
         position: absolute;
-        top: 2%;
-        right: 2%;
-        background-color: #f8d7da;
-        color: #721c24;
+        top: 7.5%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        background-color: #d7f8f2;
+        color: #001456;
         border: 1px solid #f5c6cb;
         border-radius: 5px;
-        padding: 8px 12px;
         font-size: 12px;
         font-weight: bold;
+        padding: 8px 40px;
         z-index: 2;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        max-width: 200px;
         opacity: 0.9;
-    }
-
-    .game-state {
-        background-color: #d7f8f2;
-        color: #0a002d;
-        top: 10%;
-    }
-
-    .error-message,
-    .game-state {
-        font-size: 10px;
-        padding: 6px 10px;
     }
 
 

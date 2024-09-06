@@ -44,13 +44,13 @@ const GameState = ({ game }) => {
     // In-check situation
     if (hasInCheck && game.inCheck()) {
       const isWhiteInCheck = game.turn() === 'w';
-      return isWhiteInCheck ? 'White is in check' : 'Black is in check';
+      return isWhiteInCheck ? 'White is in check!' : 'Black is in check!';
     }
 
     // Default case: whose turn is it
     if (hasTurn) {
       const isWhiteToMove = game.turn() === 'w';
-      return isWhiteToMove ? 'White to Move' : 'Black to Move';
+      return isWhiteToMove ? '🔼 White to Move' : '🔽 Black to Move';
     }
 
     return 'Error: Game state cannot be determined';

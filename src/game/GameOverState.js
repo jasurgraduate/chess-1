@@ -34,6 +34,11 @@ const GameOverState = ({ game, onClose, isMinimized, onMinimize }) => {
     return null;
   };
 
+  const handleRevenge = () => {
+    // Refreshes the page to start a new game
+    window.location.reload(); 
+  };
+
   const message = gameOverMessage();
   if (!message) {
     return null;
@@ -51,6 +56,10 @@ const GameOverState = ({ game, onClose, isMinimized, onMinimize }) => {
         {!isMinimized && (
           <div className="game-over-message">
             {message}
+            {/* Add the "REVENGE?" button */}
+            <div className="revenge-button-container">
+              <button className="revenge-button" onClick={handleRevenge}>⚒️ REVENGE? 💪🏻</button>
+            </div>
           </div>
         )}
       </div>
